@@ -10,7 +10,7 @@
 #----------------------------------------------------------------------------
 # On command line:
 #
-# make all = Make software.
+# make MCU = Make software for MCU. Example: make mega2560
 #
 # make clean = Clean out built project files.
 #
@@ -32,28 +32,6 @@
 # To rebuild project do "make clean" then "make all".
 #----------------------------------------------------------------------------
 #	<MLS> = Mark Sproul msproul-at-skychariot.com
-
-
-# MCU name
-#MCU = atmega128
-
-
-# Processor frequency.
-#     This will define a symbol, F_CPU, in all source code files equal to the 
-#     processor frequency. You can then use this symbol in your source code to 
-#     calculate timings. Do NOT tack on a 'UL' at the end, this will be done
-#     automatically to create a 32-bit value in your source code.
-#F_CPU = 16000000
-
-
-# Bootloader
-# Please adjust if using a different AVR
-# 0x0e00*2=0x1C00 for ATmega8  512 words Boot Size
-# 0xFC00*2=0x1F800 for ATmega128  1024 words Boot Size
-# 0xF800*2=0x1F000 for ATmega1280
-# 0xF000*2=0x1E000 for ATmega1280
-#BOOTLOADER_ADDRESS = 1E000
-
 
 # Output format. (can be srec, ihex, binary)
 FORMAT = ihex
@@ -422,8 +400,8 @@ end:
 
 
 # Display size of file.
-HEXSIZE = $(SIZE) --target=$(FORMAT) $(TARGET).hex
-ELFSIZE = $(SIZE) --format=avr --mcu=$(MCU) $(TARGET).elf
+HEXSIZE = $(SIZE) $(TARGET).hex
+ELFSIZE = $(SIZE) $(TARGET).elf
 
 sizebefore:
 	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_BEFORE); $(ELFSIZE); \
