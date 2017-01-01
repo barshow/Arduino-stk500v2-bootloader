@@ -1308,7 +1308,8 @@ char	theChar;
 	while (theChar != 0)
 	{
 	#if (FLASHEND > 0x10000)
-		theChar	=	pgm_read_byte_far((uint32_t *)dataPtr + ii);
+// JH	theChar	=	pgm_read_byte_far((uint32_t *)dataPtr + ii);
+		theChar	=	pgm_read_byte_far((uint32_t)dataPtr + ii);
 	#else
 		theChar	=	pgm_read_byte_near((uint32_t)dataPtr + ii);
 	#endif
@@ -1525,7 +1526,8 @@ unsigned char	*ramPtr;
 					break;
 
 				case kDUMP_EEPROM:
-					theValue	=	eeprom_read_byte((void *)myAddressPointer);
+// JH				theValue	=	eeprom_read_byte((void *)myAddressPointer);
+					theValue	=	eeprom_read_byte((uint8_t *)myAddressPointer);
 					break;
 
 				case kDUMP_RAM:
